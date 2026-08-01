@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="day" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GRAMEEN – Where Every Village Has a Story. Discover authentic Indian villages, indigenous crafts, and rural experiences." />
+  <title>GRAMEEN — Where Every Village Has a Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Noto+Serif+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=20260801-festival" />
+  <style>
+    /* Inline critical CSS for immediate render */
+    html { scroll-behavior: smooth; }
+    body { opacity: 1; }
+    #loader { position: fixed; inset: 0; z-index: 100000; }
+  </style>
+</head>
+<body class="day-mode">
+
+  <!-- ===== LOADING SCREEN ===== -->
+  <div id="loader" aria-label="Loading GRAMEEN" role="status">
+    <div class="loader-canvas">
+      <canvas id="threadCanvas"></canvas>
+      <div class="loader-logo" id="loaderLogo">
+        <span class="logo-letter" data-letter="G">G</span>
+        <span class="logo-letter" data-letter="R">R</span>
+        <span class="logo-letter" data-letter="A">A</span>
+        <span class="logo-letter" data-letter="M">M</span>
+        <span class="logo-letter" data-letter="E">E</span>
+        <span class="logo-letter" data-letter="E2">E</span>
+        <span class="logo-letter" data-letter="N">N</span>
+      </div>
+      <p class="loader-tagline" id="loaderTagline">Where Every Village Has a Story</p>
+      <div class="loader-progress">
+        <div class="loader-progress-fill" id="loaderProgress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCROLL PROGRESS ===== -->
+  <div class="scroll-progress-bar" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="#" class="nav-logo" aria-label="GRAMEEN Home">
+        <span class="nav-logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="15" stroke="var(--terracotta)" stroke-width="1.5"/>
+            <path d="M8 20 Q12 10 16 14 Q20 18 24 8" stroke="var(--terracotta)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <circle cx="8" cy="20" r="2" fill="var(--terracotta)"/>
+            <circle cx="16" cy="14" r="2" fill="var(--mustard)"/>
+            <circle cx="24" cy="8" r="2" fill="var(--forest)"/>
+          </svg>
+        </span>
+        <span class="nav-logo-text">GRAMEEN</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#villages" class="nav-link" data-i18n="navVillages">Villages</a>
+        <a href="#marketplace" class="nav-link" data-i18n="navMarketplace">Marketplace</a>
+        <a href="#artisans" class="nav-link" data-i18n="navArtisans">Artisans</a>
+        <a href="#experiences" class="nav-link" data-i18n="navExperiences">Experiences</a>
+        <a href="#gallery" class="nav-link" data-i18n="navGallery">Gallery</a>
+        <a href="#contact" class="nav-link" data-i18n="navContact">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Language Toggle -->
+        <button class="lang-toggle" id="langToggle" aria-label="Switch language" title="Switch Language">
+          <span class="lang-option active" id="langEN">EN</span>
+          <span class="lang-divider">|</span>
+          <span class="lang-option" id="langHI">हि</span>
+        </button>
+
+        <!-- Day/Night Toggle -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle day/night mode">
+          <div class="theme-toggle-track">
+            <div class="theme-toggle-thumb" id="themeThumb">
+              <svg class="sun-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+                <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <svg class="moon-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </button>
+
+        <button class="btn-primary magnetic" data-i18n="navCta">Plan Your Journey</button>
+        <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="hero" aria-label="Hero">
+    <div class="hero-bg" id="heroBg">
+      <img src="https://images.pexels.com/photos/2531444/pexels-photo-2531444.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" 
+           alt="Golden sunrise over Indian countryside with morning fog and farmlands" 
+           class="hero-bg-img" id="heroBgImg" loading="eager" />
+      <div class="hero-overlay"></div>
+      <div class="hero-gradient"></div>
+
+      <!-- Animated clouds -->
+      <div class="cloud cloud-1" aria-hidden="true">
+        <svg viewBox="0 0 200 80" fill="none"><path d="M20 60 Q30 20 60 30 Q70 5 100 15 Q120 0 140 20 Q170 10 180 40 Q200 40 195 60 Z" fill="rgba(255,255,255,0.6)"/></svg>
+      </div>
+      <div class="cloud cloud-2" aria-hidden="true">
+        <svg viewBox="0 0 150 60" fill="none"><path d="M10 50 Q20 15 45 25 Q55 5 80 12 Q95 2 110 18 Q130 8 140 35 Q155 32 150 50 Z" fill="rgba(255,255,255,0.4)"/></svg>
+      </div>
+      <div class="cloud cloud-3" aria-hidden="true">
+        <svg viewBox="0 0 120 50" fill="none"><path d="M8 42 Q15 12 35 20 Q42 4 62 10 Q75 2 88 14 Q105 6 112 28 Q124 26 120 42 Z" fill="rgba(255,255,255,0.35)"/></svg>
+      </div>
+
+      <!-- Birds -->
+      <div class="birds-container" aria-hidden="true">
+        <svg class="birds" viewBox="0 0 400 100" fill="none">
+          <path class="bird b1" d="M10 50 Q15 45 20 50 Q25 45 30 50" stroke="rgba(80,40,20,0.7)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path class="bird b2" d="M50 35 Q55 30 60 35 Q65 30 70 35" stroke="rgba(80,40,20,0.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path class="bird b3" d="M90 55 Q95 50 100 55 Q105 50 110 55" stroke="rgba(80,40,20,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path class="bird b4" d="M35 25 Q40 20 45 25 Q50 20 55 25" stroke="rgba(80,40,20,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path class="bird b5" d="M120 40 Q125 35 130 40 Q135 35 140 40" stroke="rgba(80,40,20,0.4)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <!-- Dust particles -->
+      <div class="particles" aria-hidden="true" id="particles"></div>
+
+      <!-- Grain overlay -->
+      <div class="grain-overlay" aria-hidden="true"></div>
+
+      <!-- Stars (night only) -->
+      <div class="stars-container" id="starsContainer" aria-hidden="true"></div>
+      <!-- Moon (night only) -->
+      <div class="moon" id="moon" aria-hidden="true">
+        <svg viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="40" r="28" fill="#FFF5C0" opacity="0.95"/>
+          <circle cx="30" cy="30" r="6" fill="#EEE8A0" opacity="0.4"/>
+          <circle cx="50" cy="48" r="4" fill="#EEE8A0" opacity="0.3"/>
+          <circle cx="35" cy="52" r="3" fill="#EEE8A0" opacity="0.2"/>
+          <ellipse cx="40" cy="40" r="28" ry="28" fill="none" stroke="#FFD95A" stroke-width="1" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <!-- Fireflies (night only) -->
+      <div class="fireflies" id="fireflies" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge" data-i18n="heroBadge">
+        <span class="badge-dot"></span>
+        Authentic Rural India
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-title-line" data-i18n="heroTitle1">Discover India's</span>
+        <span class="hero-title-line hero-title-accent" data-i18n="heroTitle2">Hidden Villages.</span>
+      </h1>
+      <p class="hero-subtitle" data-i18n="heroSubtitle">Travel beyond destinations. Experience timeless traditions, handcrafted treasures and stories that have lived for generations.</p>
+      <div class="hero-buttons">
+        <button class="btn-hero-primary magnetic" data-i18n="heroCta1">
+          <span>Explore Villages</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="btn-hero-secondary magnetic" data-i18n="heroCta2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>Shop Indigenous Goods</span>
+        </button>
+      </div>
+
+      <!-- Stats row -->
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num">2,400+</span>
+          <span class="hero-stat-label" data-i18n="statVillages">Villages</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">18,000+</span>
+          <span class="hero-stat-label" data-i18n="statArtisans">Artisans</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">29</span>
+          <span class="hero-stat-label" data-i18n="statStates">States</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" aria-label="Scroll down">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span data-i18n="scrollDown">Scroll to explore</span>
+    </div>
+
+    <!-- Wave divider -->
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none">
+        <path d="M0,80 C240,120 480,40 720,80 C960,120 1200,40 1440,80 L1440,120 L0,120 Z" fill="var(--cream)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== VOICE JOURNEY PLANNER ===== -->
+  <section class="voice-discovery-section" id="voice-discovery" aria-labelledby="voice-discovery-title">
+    <div class="container">
+      <div class="voice-discovery-wrap reveal">
+        <div class="voice-discovery-copy">
+          <div class="section-tag voice-section-tag">Plan by Voice</div>
+          <h2 class="voice-discovery-title" id="voice-discovery-title">Tell Us Where Your <em>Curiosity Leads.</em></h2>
+          <p>Speak naturally to find village stays, local crafts, and experiences made for the way you travel.</p>
+        </div>
+        <form class="voice-search" id="voiceSearch" role="search" aria-label="Search GRAMEEN by voice or text">
+          <label class="voice-search-label" for="voiceSearchInput" data-i18n="voiceSearchLabel">Ask GRAMEEN</label>
+          <div class="voice-search-control">
+            <input id="voiceSearchInput" type="search" autocomplete="off" data-i18n-placeholder="voiceSearchPlaceholder" placeholder="Try “pottery workshops in Rajasthan”" aria-describedby="voiceSearchStatus" />
+            <button class="voice-search-mic" id="voiceSearchMic" type="button" aria-label="Start voice search" aria-pressed="false" title="Speak your search">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="sr-only">Start voice search</span>
+            </button>
+            <button class="voice-search-copy" id="voiceSearchCopy" type="button" aria-label="Copy voice text" title="Copy voice text" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M15 9V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="sr-only">Copy voice text</span>
+            </button>
+          </div>
+          <p class="voice-search-status" id="voiceSearchStatus" role="status" aria-live="polite" data-i18n="voiceSearchHint">Tap the mic and tell us what you want to discover.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED VILLAGES ===== -->
+  <section class="section villages-section" id="villages" aria-labelledby="villages-title">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag" data-i18n="villagesTag">Featured Destinations</div>
+        <h2 class="section-title" id="villages-title">
+          <span data-i18n="villagesTitle1">Every Village,</span>
+          <em data-i18n="villagesTitle2"> A Different World</em>
+        </h2>
+        <p class="section-subtitle" data-i18n="villagesSubtitle">From the misty valleys of Meghalaya to the golden deserts of Rajasthan — each village holds centuries of story.</p>
+      </div>
+
+      <div class="villages-grid">
+        <!-- Village Card 1 -->
+        <article class="village-card reveal" tabindex="0">
+          <div class="village-card-img-wrap">
+            <img src="https://images.pexels.com/photos/11276073/pexels-photo-11276073.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=500&w=700" 
+                 alt="Green rice fields with village house in Gujarat, India" 
+                 class="village-card-img" loading="lazy" />
+            <div class="village-card-badge" data-i18n="villagesBadge1">Gujarat</div>
+            <div class="village-card-overlay"></div>
+          </div>
+          <div class="village-card-body">
+            <h3 class="village-card-name" data-i18n="village1Name">Kutch, Gujarat</h3>
+            <p class="village-card-craft" data-i18n="village1Craft">✦ Bandhani Textile &amp; Rogan Art</p>
+            <div class="village-card-meta">
+              <span class="village-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="11" r="3" stroke="currentColor" stroke-width="2"/></svg>
+                <span data-i18n="village1State">Gujarat</span>
+              </span>
+              <span class="village-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2"/><line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"/><line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/></svg>
+                <span data-i18n="village1Season">Oct – Feb</span>
+              </span>
+            </div>
+            <button class="village-card-btn" data-i18n="villageExplore">Explore Village →</button>
+          </div>
+        </article>
+
+        <!-- Village Card 2 -->
+        <article class="village-card reveal" tabindex="0">
+          <div class="village-card-img-wrap">
+            <img src="https://images.pexels.com/photos/17034795/pexels-photo-17034795.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=500&w=700"
+                 alt="Farmer in green paddy field in Kerala, India"
+                 class="village-card-img" loading="lazy" />
+            <div class="village-card-badge" data-i18n="villagesBadge2">Kerala</div>
+            <div class="village-card-overlay"></div>
+          </div>
+          <div class="village-card-body">
+            <h3 class="village-card-name" data-i18n="village2Name">Kumarakom, Kerala</h3>
+            <p class="village-card-craft" data-i18n="village2Craft">✦ Backwater Life &amp; Coir Weaving</p>
+            <div class="village-card-meta">
+              <span class="village-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="11" r="3" stroke="currentColor" stroke-width="2"/></svg>
+                <span data-i18n="village2State">Kerala</span>
+              </span>
+              <span class="village-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2"/><line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"/><line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/></svg>
+                <span data-i18n="village2Season">Nov – Mar</span>
+              </span>
+            </div>
+            <button class="village-card-btn" data-i18n="villageExplore">Explore Village →</button>
+          </div>
+        </article>
+
+        <!-- Village Card 3 -->
+        <article class="village-card reveal" tabindex="0">
+          <div class="village-card-img-wrap">
+            <img src="https://images.pexels.com/photos/17504886/pexels-photo-17504886.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=500&w=700"
+                 alt="Women in vibrant attire working in rice fields in Uttar Pradesh, India"
+                 class="village-card-img" loading="lazy" />
+            <div class="village-card-badge" data-i18n="villagesBadge3">Odisha</div>
+            <div class="village-card-overlay"></div>
+          </div>
+          <div class="village-card-body">
+            <h3 class="village-card-name" data-i18n="village3Name">Raghurajpur, Odisha</h3>
+            <p class="village-card-craft" data-i18n="village3Craft">✦ Pattachitra Painting &amp; Palm Craft</p>
+            <div class="village-card-meta">
+              <span class="village-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="11" r="3" stroke="currentColor" stroke-width="2"/></svg>
+                <span data-i18n="village3State">Odisha</span>
+              </span>
+              <span class="village-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2"/><line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"/><line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/></svg>
+                <span data-i18n="village3Season">Oct – Jan</span>
+              </span>
+            </div>
+            <button class="village-card-btn" data-i18n="villageExplore">Explore Village →</button>
+          </div>
+        </article>
+
+        <!-- Village Card 4 -->
+        <article class="village-card reveal" tabindex="0">
+          <div class="village-card-img-wrap">
+            <img src="https://images.pexels.com/photos/2132106/pexels-photo-2132106.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=500&w=700"
+                 alt="Beautiful sunrise over terraced rice paddies with rustic huts"
+                 class="village-card-img" loading="lazy" />
+            <div class="village-card-badge" data-i18n="villagesBadge4">Meghalaya</div>
+            <div class="village-card-overlay"></div>
+          </div>
+          <div class="village-card-body">
+            <h3 class="village-card-name" data-i18n="village4Name">Mawlynnong, Meghalaya</h3>
+            <p class="village-card-craft" data-i18n="village4Craft">✦ Bamboo Weaving &amp; Root Bridges</p>
+            <div class="village-card-meta">
+              <span class="village-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="11" r="3" stroke="currentColor" stroke-width="2"/></svg>
+                <span data-i18n="village4State">Meghalaya</span>
+              </span>
+              <span class="village-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2"/><line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"/><line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/></svg>
+                <span data-i18n="village4Season">Sep – Apr</span>
+              </span>
+            </div>
+            <button class="village-card-btn" data-i18n="villageExplore">Explore Village →</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="section-cta reveal">
+        <button class="btn-outline magnetic" data-i18n="viewAllVillages">View All 2,400+ Villages</button>
+      </div>
+    </div>
+
+    <!-- Organic divider -->
+    <div class="organic-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" fill="none" preserveAspectRatio="none">
+        <path d="M0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1440,20 1440,40 L1440,80 L0,80 Z" fill="var(--bg-secondary)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== INDIGENOUS MARKETPLACE ===== -->
+  <section class="section marketplace-section" id="marketplace" aria-labelledby="marketplace-title" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag" data-i18n="marketplaceTag">Indigenous Marketplace</div>
+        <h2 class="section-title" id="marketplace-title">
+          <span data-i18n="marketplaceTitle1">Crafted by Hands,</span>
+          <em data-i18n="marketplaceTitle2"> Carried by Stories</em>
+        </h2>
+        <p class="section-subtitle" data-i18n="marketplaceSubtitle">Every product connects you directly to the artisan who made it. No middlemen. No factories. Only heritage.</p>
+      </div>
+
+      <div class="marketplace-grid">
+        <!-- Product 1 -->
+        <article class="product-card reveal" tabindex="0">
+          <div class="product-card-img-wrap">
+            <img src="https://images.pexels.com/photos/24738158/pexels-photo-24738158.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=400" 
+                 alt="Traditional handloom woven colorful textile scarf from rural India" 
+                 class="product-card-img" loading="lazy" />
+            <div class="product-card-tag" data-i18n="productTag1">Handloom</div>
+            <button class="product-wishlist" aria-label="Add to wishlist">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="product-card-body">
+            <div class="product-artisan-row">
+              <div class="product-artisan-avatar" style="background:linear-gradient(135deg,var(--terracotta),var(--mustard))">D</div>
+              <div>
+                <span class="product-artisan-name" data-i18n="artisan1Name">Devki Bai</span>
+                <span class="product-artisan-village" data-i18n="artisan1Village">Bhujodi, Kutch</span>
+              </div>
+            </div>
+            <h3 class="product-name" data-i18n="product1Name">Kutchi Handloom Shawl</h3>
+            <p class="product-story" data-i18n="product1Story">Woven on a 200-year-old loom using natural dyes from pomegranate rinds.</p>
+            <div class="product-footer">
+              <span class="product-price" data-i18n="product1Price">₹ 3,200</span>
+              <button class="product-add-btn" data-product-id="shawl" data-i18n="addToCart">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="product-card reveal" tabindex="0">
+          <div class="product-card-img-wrap">
+            <img src="https://images.pexels.com/photos/38428359/pexels-photo-38428359.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=400" 
+                 alt="Traditional pottery making in rural Indian village" 
+                 class="product-card-img" loading="lazy" />
+            <div class="product-card-tag" data-i18n="productTag2">Pottery</div>
+            <button class="product-wishlist" aria-label="Add to wishlist">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="product-card-body">
+            <div class="product-artisan-row">
+              <div class="product-artisan-avatar" style="background:linear-gradient(135deg,var(--forest),var(--mustard))">R</div>
+              <div>
+                <span class="product-artisan-name" data-i18n="artisan2Name">Ramesh Prajapati</span>
+                <span class="product-artisan-village" data-i18n="artisan2Village">Khurja, UP</span>
+              </div>
+            </div>
+            <h3 class="product-name" data-i18n="product2Name">Blue Pottery Tea Set</h3>
+            <p class="product-story" data-i18n="product2Story">Handcrafted using 500-year-old Persian-influenced Jaipur blue pottery technique.</p>
+            <div class="product-footer">
+              <span class="product-price" data-i18n="product2Price">₹ 1,800</span>
+              <button class="product-add-btn" data-product-id="tea-set" data-i18n="addToCart">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="product-card reveal" tabindex="0">
+          <div class="product-card-img-wrap">
+            <img src="https://images.pexels.com/photos/20306641/pexels-photo-20306641.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=400" 
+                 alt="Vibrant traditional Theyyam cultural performer from Kerala" 
+                 class="product-card-img" loading="lazy" />
+            <div class="product-card-tag" data-i18n="productTag3">Tribal Art</div>
+            <button class="product-wishlist" aria-label="Add to wishlist">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="product-card-body">
+            <div class="product-artisan-row">
+              <div class="product-artisan-avatar" style="background:linear-gradient(135deg,#8B4513,var(--terracotta))">L</div>
+              <div>
+                <span class="product-artisan-name" data-i18n="artisan3Name">Lakshmi Devi</span>
+                <span class="product-artisan-village" data-i18n="artisan3Village">Bastar, Chhattisgarh</span>
+              </div>
+            </div>
+            <h3 class="product-name" data-i18n="product3Name">Bastar Dhokra Art</h3>
+            <p class="product-story" data-i18n="product3Story">Lost-wax casting technique dating back 4,000 years — practiced by the Gond tribe.</p>
+            <div class="product-footer">
+              <span class="product-price" data-i18n="product3Price">₹ 5,500</span>
+              <button class="product-add-btn" data-product-id="dhokra" data-i18n="addToCart">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 4 -->
+        <article class="product-card reveal" tabindex="0">
+          <div class="product-card-img-wrap">
+            <img src="https://images.pexels.com/photos/28382914/pexels-photo-28382914.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=400" 
+                 alt="Traditional artisan weaving on a loom" 
+                 class="product-card-img" loading="lazy" />
+            <div class="product-card-tag" data-i18n="productTag4">Bamboo Craft</div>
+            <button class="product-wishlist" aria-label="Add to wishlist">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="product-card-body">
+            <div class="product-artisan-row">
+              <div class="product-artisan-avatar" style="background:linear-gradient(135deg,var(--forest),#5A8A6A)">M</div>
+              <div>
+                <span class="product-artisan-name" data-i18n="artisan4Name">Meitei Weavers</span>
+                <span class="product-artisan-village" data-i18n="artisan4Village">Manipur Village</span>
+              </div>
+            </div>
+            <h3 class="product-name" data-i18n="product4Name">Moirang Phee Textile</h3>
+            <p class="product-story" data-i18n="product4Story">Hand-spun mulberry silk woven by women of Manipur with patterns passed down orally.</p>
+            <div class="product-footer">
+              <span class="product-price" data-i18n="product4Price">₹ 4,200</span>
+              <button class="product-add-btn" data-product-id="textile" data-i18n="addToCart">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="organic-divider organic-divider-flip" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" fill="none" preserveAspectRatio="none">
+        <path d="M0,40 C180,0 360,80 540,40 C720,0 900,80 1080,40 C1260,0 1440,60 1440,40 L1440,0 L0,0 Z" fill="var(--cream)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== MEET THE ARTISANS ===== -->
+  <section class="section artisans-section" id="artisans" aria-labelledby="artisans-title">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag" data-i18n="artisansTag">Human Stories</div>
+        <h2 class="section-title" id="artisans-title">
+          <span data-i18n="artisansTitle1">Meet The</span>
+          <em data-i18n="artisansTitle2"> Artisans</em>
+        </h2>
+        <p class="section-subtitle" data-i18n="artisansSubtitle">Behind every craft is a life, a lineage, and a legacy. These are the keepers of India's living heritage.</p>
+      </div>
+
+      <div class="artisans-grid">
+        <article class="artisan-card reveal" tabindex="0">
+          <div class="artisan-img-wrap">
+            <img src="https://images.pexels.com/photos/36766318/pexels-photo-36766318.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=500&w=500" 
+                 alt="Woman artisan creating traditional clay pottery in vibrant sari" 
+                 class="artisan-img" loading="lazy" />
+            <div class="artisan-craft-icon">🏺</div>
+          </div>
+          <div class="artisan-body">
+            <h3 class="artisan-name" data-i18n="artisanCard1Name">Savitri Devi</h3>
+            <p class="artisan-craft" data-i18n="artisanCard1Craft">Master Potter · Rajasthan</p>
+            <p class="artisan-story" data-i18n="artisanCard1Story">"My grandmother taught me at age 7. The clay remembers everything my hands have told it." — 42 years of craft mastery.</p>
+            <div class="artisan-gen">
+              <span class="gen-badge" data-i18n="artisanGen3">3rd Generation</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="artisan-card artisan-card-featured reveal" tabindex="0">
+          <div class="artisan-img-wrap">
+            <img src="https://images.pexels.com/photos/38556299/pexels-photo-38556299.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=500&w=500" 
+                 alt="Indian artisan crafting textiles in traditional street market" 
+                 class="artisan-img" loading="lazy" />
+            <div class="artisan-craft-icon">🧵</div>
+          </div>
+          <div class="artisan-body">
+            <h3 class="artisan-name" data-i18n="artisanCard2Name">Abdul Rehman</h3>
+            <p class="artisan-craft" data-i18n="artisanCard2Craft">Master Weaver · Varanasi</p>
+            <p class="artisan-story" data-i18n="artisanCard2Story">"A Banarasi saree takes 15 days to complete. Each thread is a prayer." — Recipient of National Craft Award 2019.</p>
+            <div class="artisan-gen">
+              <span class="gen-badge" data-i18n="artisanGen7">7th Generation</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="artisan-card reveal" tabindex="0">
+          <div class="artisan-img-wrap">
+            <img src="https://images.pexels.com/photos/14707123/pexels-photo-14707123.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=500&w=500" 
+                 alt="Elderly woman in vibrant traditional attire from Rajasthan" 
+                 class="artisan-img" loading="lazy" />
+            <div class="artisan-craft-icon">🎨</div>
+          </div>
+          <div class="artisan-body">
+            <h3 class="artisan-name" data-i18n="artisanCard3Name">Rupa Bai Shyam</h3>
+            <p class="artisan-craft" data-i18n="artisanCard3Craft">Gond Painter · Madhya Pradesh</p>
+            <p class="artisan-story" data-i18n="artisanCard3Story">"The forest, the river, the animals — they live in my paintings. I just give them color." — UNESCO heritage practitioner.</p>
+            <div class="artisan-gen">
+              <span class="gen-badge" data-i18n="artisanGen5">5th Generation</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VILLAGE EXPERIENCES ===== -->
+  <section class="section experiences-section" id="experiences" aria-labelledby="experiences-title" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag" data-i18n="experiencesTag">Immersive Experiences</div>
+        <h2 class="section-title" id="experiences-title">
+          <span data-i18n="experiencesTitle1">Live the</span>
+          <em data-i18n="experiencesTitle2"> Village Life</em>
+        </h2>
+        <p class="section-subtitle" data-i18n="experiencesSubtitle">Not a tourist. A guest. Participate in daily village rhythms, learn ancient crafts, and taste food cooked by the earth itself.</p>
+      </div>
+
+      <div class="experiences-grid">
+        <div class="exp-card reveal" tabindex="0" style="--accent-color: var(--terracotta)">
+          <div class="exp-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="20" fill="var(--terracotta)" opacity="0.15"/>
+              <path d="M12 32 Q18 20 24 28 Q30 20 36 32" stroke="var(--terracotta)" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M20 20 C20 16 28 16 28 20" stroke="var(--terracotta)" stroke-width="2" fill="none"/>
+              <circle cx="24" cy="18" r="3" stroke="var(--terracotta)" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="exp-title" data-i18n="exp1Title">Village Cooking</h3>
+          <p class="exp-desc" data-i18n="exp1Desc">Cook on mud chulhas, grind spices on stone, and taste the ancient recipes passed through grandmothers.</p>
+          <span class="exp-duration" data-i18n="exp1Duration">3 Hours · From ₹800</span>
+        </div>
+
+        <div class="exp-card reveal" tabindex="0" style="--accent-color: var(--forest)">
+          <div class="exp-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="20" fill="var(--forest)" opacity="0.15"/>
+              <path d="M16 36 L16 24 Q16 18 24 16 Q32 18 32 24 L32 36" stroke="var(--forest)" stroke-width="2" fill="none"/>
+              <path d="M20 26 Q24 22 28 26" stroke="var(--forest)" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="exp-title" data-i18n="exp2Title">Farming Experience</h3>
+          <p class="exp-desc" data-i18n="exp2Desc">Plant paddy, harvest mustard, feed cattle and understand the ancient wisdom of Indian agriculture.</p>
+          <span class="exp-duration" data-i18n="exp2Duration">Full Day · From ₹1,200</span>
+        </div>
+
+        <div class="exp-card reveal" tabindex="0" style="--accent-color: var(--mustard)">
+          <div class="exp-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="20" fill="var(--mustard)" opacity="0.2"/>
+              <ellipse cx="24" cy="28" rx="8" ry="4" stroke="var(--mustard)" stroke-width="2"/>
+              <path d="M24 28 L24 18" stroke="var(--mustard)" stroke-width="2"/>
+              <path d="M18 22 Q24 16 30 22" stroke="var(--mustard)" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="exp-title" data-i18n="exp3Title">Pottery Workshop</h3>
+          <p class="exp-desc" data-i18n="exp3Desc">Sit at a spinning wheel with a master potter and shape your own piece of clay into a story.</p>
+          <span class="exp-duration" data-i18n="exp3Duration">2 Hours · From ₹600</span>
+        </div>
+
+        <div class="exp-card reveal" tabindex="0" style="--accent-color: #8B4513">
+          <div class="exp-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="20" fill="#8B4513" opacity="0.12"/>
+              <path d="M14 34 Q20 24 24 28 Q28 24 34 34" stroke="#8B4513" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M24 28 L24 14" stroke="#8B4513" stroke-width="2"/>
+              <path d="M20 18 L24 14 L28 18" stroke="#8B4513" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="exp-title" data-i18n="exp4Title">Folk Dance Class</h3>
+          <p class="exp-desc" data-i18n="exp4Desc">Learn Garba, Bihu, Ghoomar or Chhau — dance forms that tell stories of seasons, harvests and gods.</p>
+          <span class="exp-duration" data-i18n="exp4Duration">2 Hours · From ₹500</span>
+        </div>
+
+        <div class="exp-card reveal" tabindex="0" style="--accent-color: var(--terracotta)">
+          <div class="exp-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="20" fill="var(--terracotta)" opacity="0.15"/>
+              <ellipse cx="24" cy="30" rx="10" ry="5" stroke="var(--terracotta)" stroke-width="2"/>
+              <circle cx="16" cy="32" r="3" stroke="var(--terracotta)" stroke-width="1.5"/>
+              <circle cx="32" cy="32" r="3" stroke="var(--terracotta)" stroke-width="1.5"/>
+              <path d="M14 28 Q16 20 24 22 Q32 20 34 28" stroke="var(--terracotta)" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="exp-title" data-i18n="exp5Title">Bullock Cart Ride</h3>
+          <p class="exp-desc" data-i18n="exp5Desc">Cruise through golden fields at sunrise on a wooden cart, listening to the rhythm of hooves and birdsong.</p>
+          <span class="exp-duration" data-i18n="exp5Duration">1 Hour · From ₹400</span>
+        </div>
+
+        <div class="exp-card reveal" tabindex="0" style="--accent-color: var(--forest)">
+          <div class="exp-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="20" fill="var(--forest)" opacity="0.15"/>
+              <path d="M24 36 L24 20" stroke="var(--forest)" stroke-width="2"/>
+              <path d="M16 26 Q24 18 32 26" stroke="var(--forest)" stroke-width="2" fill="none"/>
+              <path d="M18 32 Q24 24 30 32" stroke="var(--forest)" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="exp-title" data-i18n="exp6Title">Nature Walk</h3>
+          <p class="exp-desc" data-i18n="exp6Desc">Guided walks through forest paths, medicinal plant gardens and sacred groves with village elders.</p>
+          <span class="exp-duration" data-i18n="exp6Duration">Morning · From ₹350</span>
+        </div>
+
+        <div class="exp-card reveal" tabindex="0" style="--accent-color: var(--mustard)">
+          <div class="exp-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="20" fill="var(--mustard)" opacity="0.15"/>
+              <rect x="14" y="18" width="20" height="16" rx="2" stroke="var(--mustard)" stroke-width="2"/>
+              <path d="M18 18 L18 34" stroke="var(--mustard)" stroke-width="1.5"/>
+              <path d="M22 18 L22 34" stroke="var(--mustard)" stroke-width="1.5"/>
+              <path d="M26 18 L26 34" stroke="var(--mustard)" stroke-width="1.5"/>
+              <path d="M30 18 L30 34" stroke="var(--mustard)" stroke-width="1.5"/>
+              <path d="M14 24 L34 24" stroke="var(--mustard)" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <h3 class="exp-title" data-i18n="exp7Title">Handloom Experience</h3>
+          <p class="exp-desc" data-i18n="exp7Desc">Sit beside a master weaver, thread a loom and weave your first row of cloth — pure meditative craft.</p>
+          <span class="exp-duration" data-i18n="exp7Duration">3 Hours · From ₹900</span>
+        </div>
+
+        <div class="exp-card reveal" tabindex="0" style="--accent-color: #8B4513">
+          <div class="exp-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="20" fill="#8B4513" opacity="0.12"/>
+              <path d="M16 30 Q20 20 24 24 Q28 20 32 30" stroke="#8B4513" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <circle cx="24" cy="16" r="4" stroke="#8B4513" stroke-width="2"/>
+              <path d="M20 30 L28 30" stroke="#8B4513" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="exp-title" data-i18n="exp8Title">Traditional Music</h3>
+          <p class="exp-desc" data-i18n="exp8Desc">Learn the tabla, sitar or folk instruments under moonlight with musicians whose families have played for centuries.</p>
+          <span class="exp-duration" data-i18n="exp8Duration">Evening · From ₹700</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SUSTAINABLE TOURISM ===== -->
+  <section class="section sustain-section" id="sustainable" aria-labelledby="sustain-title">
+    <div class="sustain-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag" data-i18n="sustainTag">Our Impact</div>
+        <h2 class="section-title" id="sustain-title" style="color: var(--cream)">
+          <span data-i18n="sustainTitle1">Tourism That</span>
+          <em data-i18n="sustainTitle2"> Gives Back</em>
+        </h2>
+        <p class="section-subtitle" style="color:rgba(255,249,240,0.8)" data-i18n="sustainSubtitle">Every journey you take directly funds village communities, empowers women artisans, and preserves centuries of living heritage.</p>
+      </div>
+
+      <div class="sustain-grid">
+        <div class="sustain-card reveal">
+          <div class="counter-num" data-target="18000" data-suffix="+">0</div>
+          <p class="counter-label" data-i18n="sustain1">Artisans Supported</p>
+        </div>
+        <div class="sustain-card reveal">
+          <div class="counter-num" data-target="2400" data-suffix="+">0</div>
+          <p class="counter-label" data-i18n="sustain2">Villages Connected</p>
+        </div>
+        <div class="sustain-card reveal">
+          <div class="counter-num" data-target="85" data-suffix="%">0</div>
+          <p class="counter-label" data-i18n="sustain3">Income Reaches Artisans</p>
+        </div>
+        <div class="sustain-card reveal">
+          <div class="counter-num" data-target="12000" data-suffix="+">0</div>
+          <p class="counter-label" data-i18n="sustain4">Women Empowered</p>
+        </div>
+      </div>
+
+      <div class="sustain-pillars reveal">
+        <div class="pillar">
+          <div class="pillar-icon">🌱</div>
+          <span data-i18n="pillar1">Eco Travel</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">👩‍🎨</div>
+          <span data-i18n="pillar2">Women First</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🤝</div>
+          <span data-i18n="pillar3">Fair Trade</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🏛️</div>
+          <span data-i18n="pillar4">Heritage Preservation</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">♻️</div>
+          <span data-i18n="pillar5">Zero Waste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FESTIVAL CALENDAR ===== -->
+  <section class="section festival-section" id="festivals" aria-labelledby="festivals-title">
+    <div class="festival-scene" aria-hidden="true">
+      <div class="festival-sun"></div>
+      <div class="festival-cloud festival-cloud-one"></div>
+      <div class="festival-cloud festival-cloud-two"></div>
+      <div class="festival-bird festival-bird-one"><i></i><i></i></div>
+      <div class="festival-bird festival-bird-two"><i></i><i></i></div>
+      <div class="festival-bird festival-bird-three"><i></i><i></i></div>
+      <div class="festival-kite festival-kite-one"><b></b></div>
+      <div class="festival-kite festival-kite-two"><b></b></div>
+      <div class="festival-kite festival-kite-three"><b></b></div>
+      <div class="festival-firework festival-firework-one"></div>
+      <div class="festival-firework festival-firework-two"></div>
+      <div class="festival-firework festival-firework-three"></div>
+      <div class="festival-lantern festival-lantern-one"><i></i></div>
+      <div class="festival-lantern festival-lantern-two"><i></i></div>
+      <div class="festival-spark festival-spark-one">✦</div>
+      <div class="festival-spark festival-spark-two">✦</div>
+      <div class="festival-spark festival-spark-three">✦</div>
+      <div class="festival-rangoli"><i></i><i></i><i></i><i></i><b></b></div>
+    </div>
+    <div class="container festival-content">
+      <div class="section-header reveal">
+        <div class="section-tag" data-i18n="festivalTag">Festival Calendar</div>
+        <h2 class="section-title" id="festivals-title">
+          <span data-i18n="festivalTitle1">Celebrate With</span>
+          <em data-i18n="festivalTitle2"> The Villages</em>
+        </h2>
+      </div>
+      <div class="festival-calendar-layout">
+        <div class="festival-slider">
+          <div class="festival-slider-controls" aria-label="Festival calendar controls">
+            <p>Browse village celebrations</p>
+            <div><button id="festivalPrev" type="button" aria-label="Previous festival">←</button><button id="festivalNext" type="button" aria-label="Next festival">→</button></div>
+          </div>
+          <div class="festival-slider-window">
+      <div class="festival-timeline" id="festivalTimeline">
+        <div class="festival-item reveal">
+          <div class="festival-month">JAN</div>
+          <div class="festival-dot"></div>
+          <div class="festival-card">
+            <span class="festival-name" data-i18n="festival1">Makar Sankranti · Gujarat</span>
+            <p data-i18n="festival1desc">The sky fills with ten thousand kites in a riot of color. The most joyous sky festival in India.</p>
+          </div>
+        </div>
+        <div class="festival-item reveal">
+          <div class="festival-month">MAR</div>
+          <div class="festival-dot"></div>
+          <div class="festival-card">
+            <span class="festival-name" data-i18n="festival2">Holi · Mathura & Vrindavan</span>
+            <p data-i18n="festival2desc">Experience the world's most colorful festival at its spiritual home — a village celebration like no other.</p>
+          </div>
+        </div>
+        <div class="festival-item reveal">
+          <div class="festival-month">APR</div>
+          <div class="festival-dot"></div>
+          <div class="festival-card">
+            <span class="festival-name" data-i18n="festival3">Baisakhi Harvest · Punjab</span>
+            <p data-i18n="festival3desc">Golden wheat harvest, Bhangra under open skies, and the spirit of community that feeds a nation.</p>
+          </div>
+        </div>
+        <div class="festival-item reveal">
+          <div class="festival-month">OCT</div>
+          <div class="festival-dot"></div>
+          <div class="festival-card">
+            <span class="festival-name" data-i18n="festival4">Pushkar Camel Fair · Rajasthan</span>
+            <p data-i18n="festival4desc">Ancient trading fair — camels, music, folk art and thousands of village traders under desert stars.</p>
+          </div>
+        </div>
+        <div class="festival-item reveal">
+          <div class="festival-month">NOV</div>
+          <div class="festival-dot"></div>
+          <div class="festival-card">
+            <span class="festival-name" data-i18n="festival5">Diwali · Varanasi & Jaipur</span>
+            <p data-i18n="festival5desc">Ten thousand oil lamps float on holy rivers. Village homes glow. The night becomes golden.</p>
+          </div>
+        </div>
+        <div class="festival-item reveal">
+          <div class="festival-month">DEC</div>
+          <div class="festival-dot"></div>
+          <div class="festival-card">
+            <span class="festival-name" data-i18n="festival6">Hornbill Festival · Nagaland</span>
+            <p data-i18n="festival6desc">Ten warrior tribes, one valley, ten days of song, craft, fire and ancient ritual performance.</p>
+          </div>
+        </div>
+      </div>
+          </div>
+        </div>
+        <aside class="daily-calendar reveal" aria-label="Daily calendar">
+          <div class="daily-calendar-head"><div><span>DAILY CALENDAR</span><h3 id="dailyCalendarMonth">August 2026</h3></div><div class="calendar-live-dot"><i></i> Today</div></div>
+          <div class="calendar-weekdays" aria-hidden="true"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+          <div class="calendar-days" id="calendarDays"></div>
+          <div class="calendar-note"><span class="calendar-note-date" id="calendarSelectedDate"></span><p id="calendarFestivalNote">Select a festival to see it on the calendar.</p></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VILLAGE MANDI RATES ===== -->
+  <section class="section mandi-section" id="mandi-rates" aria-labelledby="mandi-title">
+    <div class="container">
+      <div class="mandi-heading reveal">
+        <div><div class="section-tag">Village Market Watch</div><h2 class="section-title" id="mandi-title"><span>Empowering India's</span><em> Backbone.</em></h2><p class="section-subtitle">A sample live-style board for the daily prices that help farmers plan with confidence.</p></div>
+        <div class="mandi-status"><span><i></i> Sample market feed</span><strong id="mandiUpdated">Updated just now</strong></div>
+      </div>
+      <div class="mandi-board reveal">
+        <div class="mandi-board-head"><span>Commodity</span><span>Village mandi</span><span>Today’s rate</span><span>Movement</span></div>
+        <div class="mandi-row" data-base-rate="2480"><strong>Wheat <small>per quintal</small></strong><span>Khatauli, UP</span><b>₹2,480</b><em class="up">↑ 2.4%</em></div>
+        <div class="mandi-row" data-base-rate="2325"><strong>Paddy <small>per quintal</small></strong><span>Nabadwip, WB</span><b>₹2,325</b><em class="up">↑ 1.1%</em></div>
+        <div class="mandi-row" data-base-rate="4180"><strong>Mustard <small>per quintal</small></strong><span>Hanumangarh, RJ</span><b>₹4,180</b><em class="down">↓ 0.6%</em></div>
+        <div class="mandi-row" data-base-rate="5920"><strong>Tur dal <small>per quintal</small></strong><span>Latur, MH</span><b>₹5,920</b><em class="up">↑ 3.2%</em></div>
+        <div class="mandi-row" data-base-rate="2760"><strong>Potato <small>per quintal</small></strong><span>Agra, UP</span><b>₹2,760</b><em class="down">↓ 1.4%</em></div>
+      </div>
+      <p class="mandi-disclaimer">Demo data only — connect an official mandi-price API before publishing as live market information.</p>
+    </div>
+  </section>
+
+  <!-- ===== TRAVELER STORIES (Testimonials) ===== -->
+  <section class="section testimonials-section" id="stories" aria-labelledby="stories-title">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag" data-i18n="storiesTag">Traveler Stories</div>
+        <h2 class="section-title" id="stories-title">
+          <span data-i18n="storiesTitle1">Words From</span>
+          <em data-i18n="storiesTitle2"> Our Travelers</em>
+        </h2>
+      </div>
+
+      <div class="testimonials-slider" role="region" aria-label="Traveler stories slider">
+        <div class="testimonials-track" id="testimonialsTrack">
+          <div class="testimonial-card" tabindex="0">
+            <div class="testimonial-stars" aria-label="5 star rating">★★★★★</div>
+            <blockquote class="testimonial-text" data-i18n="testimonial1">"Three days in Kutch changed my life. I sat with a 70-year-old woman who taught me more about beauty than any museum ever could. GRAMEEN is the most authentic experience I've ever had."</blockquote>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" style="background:linear-gradient(135deg,var(--terracotta),var(--mustard))">P</div>
+              <div>
+                <strong data-i18n="traveler1Name">Priya Mehta</strong>
+                <span data-i18n="traveler1City">Mumbai, India</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card" tabindex="0">
+            <div class="testimonial-stars" aria-label="5 star rating">★★★★★</div>
+            <blockquote class="testimonial-text" data-i18n="testimonial2">"I came as a photographer. I left as a believer. The Gond painting workshop was meditative, the food was extraordinary. I've traveled 40 countries — Indian villages are incomparable."</blockquote>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" style="background:linear-gradient(135deg,var(--forest),#5A8A6A)">J</div>
+              <div>
+                <strong data-i18n="traveler2Name">James Whitfield</strong>
+                <span data-i18n="traveler2City">London, UK</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card" tabindex="0">
+            <div class="testimonial-stars" aria-label="5 star rating">★★★★★</div>
+            <blockquote class="testimonial-text" data-i18n="testimonial3">"हमारे गाँव की यात्रा ने मुझे अपनी जड़ों से फिर से जोड़ा। ग्रामीण ने जो अनुभव दिया, वह पैसों से नहीं खरीदा जा सकता।"</blockquote>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" style="background:linear-gradient(135deg,var(--mustard),var(--terracotta))">A</div>
+              <div>
+                <strong data-i18n="traveler3Name">Ananya Singh</strong>
+                <span data-i18n="traveler3City">Delhi, India</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card" tabindex="0">
+            <div class="testimonial-stars" aria-label="5 star rating">★★★★★</div>
+            <blockquote class="testimonial-text" data-i18n="testimonial4">"Woke up to rooster calls, made chai on a wood fire, learned Pattachitra painting with a 4th-generation master. This is travel at its most honest and most beautiful."</blockquote>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" style="background:linear-gradient(135deg,#5A4332,var(--forest))">S</div>
+              <div>
+                <strong data-i18n="traveler4Name">Sophie Laurent</strong>
+                <span data-i18n="traveler4City">Paris, France</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonials-nav">
+          <button class="testimonial-prev" id="testimonialPrev" aria-label="Previous testimonial">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="testimonials-dots" id="testimonialsDots"></div>
+          <button class="testimonial-next" id="testimonialNext" aria-label="Next testimonial">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="section gallery-section" id="gallery" aria-labelledby="gallery-title" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag" data-i18n="galleryTag">Visual Stories</div>
+        <h2 class="section-title" id="gallery-title">
+          <span data-i18n="galleryTitle1">Through the</span>
+          <em data-i18n="galleryTitle2"> Lens of India</em>
+        </h2>
+      </div>
+
+      <div class="gallery-masonry">
+        <div class="gallery-item reveal" tabindex="0" role="button" aria-label="Open gallery image 1">
+          <img src="https://images.pexels.com/photos/2132106/pexels-photo-2132106.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=500" alt="Sunrise over terraced rice paddies with rustic huts" loading="lazy" />
+          <div class="gallery-overlay"><span data-i18n="galleryImg1">Sunrise Villages</span></div>
+        </div>
+        <div class="gallery-item reveal" tabindex="0" role="button" aria-label="Open gallery image 2">
+          <img src="https://images.pexels.com/photos/38556299/pexels-photo-38556299.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=400" alt="Indian artisan crafting textiles" loading="lazy" />
+          <div class="gallery-overlay"><span data-i18n="galleryImg2">Artisan Hands</span></div>
+        </div>
+        <div class="gallery-item reveal gallery-item-tall" tabindex="0" role="button" aria-label="Open gallery image 3">
+          <img src="https://images.pexels.com/photos/30665287/pexels-photo-30665287.png?auto=compress&cs=tinysrgb&dpr=2&h=700&w=500" alt="Traditional potter crafting clay pots in Bihar, India" loading="lazy" />
+          <div class="gallery-overlay"><span data-i18n="galleryImg3">Potter's Clay</span></div>
+        </div>
+        <div class="gallery-item reveal" tabindex="0" role="button" aria-label="Open gallery image 4">
+          <img src="https://images.pexels.com/photos/17504886/pexels-photo-17504886.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Women in vibrant attire in rice fields" loading="lazy" />
+          <div class="gallery-overlay"><span data-i18n="galleryImg4">Field of Color</span></div>
+        </div>
+        <div class="gallery-item reveal gallery-item-wide" tabindex="0" role="button" aria-label="Open gallery image 5">
+          <img src="https://images.pexels.com/photos/33777504/pexels-photo-33777504.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=800" alt="Golden sunrise over terraced green hills" loading="lazy" />
+          <div class="gallery-overlay"><span data-i18n="galleryImg5">Golden Hills</span></div>
+        </div>
+        <div class="gallery-item reveal" tabindex="0" role="button" aria-label="Open gallery image 6">
+          <img src="https://images.pexels.com/photos/20306641/pexels-photo-20306641.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=450&w=400" alt="Traditional Theyyam cultural performer from Kerala" loading="lazy" />
+          <div class="gallery-overlay"><span data-i18n="galleryImg6">Living Rituals</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <img src="" alt="" class="lightbox-img" id="lightboxImg" />
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section faq-section" id="faq" aria-labelledby="faq-title">
+    <div class="container faq-container">
+      <div class="section-header reveal">
+        <div class="section-tag" data-i18n="faqTag">Questions Answered</div>
+        <h2 class="section-title" id="faq-title">
+          <span data-i18n="faqTitle1">Common</span>
+          <em data-i18n="faqTitle2"> Questions</em>
+        </h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item reveal" tabindex="0" role="button" aria-expanded="false">
+          <div class="faq-question">
+            <span data-i18n="faq1q">How do I book a village experience?</span>
+            <div class="faq-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq1a">Simply browse our village experiences, select your dates and preferred activities, and complete a simple 3-step booking. Our village liaison will reach you within 24 hours to personalize your itinerary.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal" tabindex="0" role="button" aria-expanded="false">
+          <div class="faq-question">
+            <span data-i18n="faq2q">Is the experience safe for solo travellers?</span>
+            <div class="faq-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq2a">Absolutely. All our village hosts are verified, background-checked, and culturally sensitized. We have a 24/7 traveler support line. Thousands of solo travelers — especially women — have experienced our villages safely.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal" tabindex="0" role="button" aria-expanded="false">
+          <div class="faq-question">
+            <span data-i18n="faq3q">How does my purchase support artisans?</span>
+            <div class="faq-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq3a">85% of every product sale goes directly to the artisan. We operate on a transparent fair-trade model. You can track exactly where your money went via our impact dashboard after each purchase.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal" tabindex="0" role="button" aria-expanded="false">
+          <div class="faq-question">
+            <span data-i18n="faq4q">Can I visit as a group or family?</span>
+            <div class="faq-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq4a">Yes! We offer group packages for families, schools, corporate teams and photography groups. Entire villages can be arranged for private cultural immersion retreats. Contact us for bespoke group planning.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal" tabindex="0" role="button" aria-expanded="false">
+          <div class="faq-question">
+            <span data-i18n="faq5q">Are the products on the marketplace authentic?</span>
+            <div class="faq-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq5a">Every product carries a digital authenticity certificate linked to the artisan, their village, their craft tradition, and GI tag (where applicable). You receive the full story alongside your product.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWSLETTER ===== -->
+  <section class="section newsletter-section" id="contact" aria-labelledby="newsletter-title" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="newsletter-wrap reveal">
+        <div class="newsletter-content">
+          <div class="section-tag" data-i18n="newsletterTag">Stay Connected</div>
+          <h2 class="newsletter-title" id="newsletter-title" data-i18n="newsletterTitle">Receive Letters from the Villages</h2>
+          <p class="newsletter-subtitle" data-i18n="newsletterSubtitle">Monthly stories of artisans, festival invitations, craft discoveries and travel guides — curated from the heart of rural India.</p>
+          <div class="newsletter-features">
+            <span>✦ <span data-i18n="newsletterFeat1">Monthly Village Stories</span></span>
+            <span>✦ <span data-i18n="newsletterFeat2">Artisan Spotlights</span></span>
+            <span>✦ <span data-i18n="newsletterFeat3">Festival Alerts</span></span>
+          </div>
+        </div>
+        <form class="newsletter-form" aria-label="Newsletter subscription" onsubmit="handleNewsletterSubmit(event)">
+          <div class="form-group">
+            <label for="newsletterName" data-i18n="formName">Your Name</label>
+            <input type="text" id="newsletterName" placeholder="Priya Sharma" required aria-required="true" data-i18n-placeholder="formNamePlaceholder" />
+          </div>
+          <div class="form-group">
+            <label for="newsletterEmail" data-i18n="formEmail">Email Address</label>
+            <input type="email" id="newsletterEmail" placeholder="priya@example.com" required aria-required="true" />
+          </div>
+          <div class="form-group">
+            <label for="newsletterInterest" data-i18n="formInterest">I'm interested in</label>
+            <select id="newsletterInterest" aria-label="Select interest">
+              <option value="travel" data-i18n="interestTravel">Village Travel</option>
+              <option value="crafts" data-i18n="interestCrafts">Indigenous Crafts</option>
+              <option value="both" data-i18n="interestBoth">Both</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary full-width magnetic" data-i18n="formSubmit">Join the Community</button>
+          <p class="form-note" data-i18n="formNote">No spam. Just stories. Unsubscribe anytime.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="footer" role="contentinfo">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#" class="nav-logo" aria-label="GRAMEEN Home">
+              <span class="nav-logo-icon">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                  <circle cx="16" cy="16" r="15" stroke="var(--mustard)" stroke-width="1.5"/>
+                  <path d="M8 20 Q12 10 16 14 Q20 18 24 8" stroke="var(--mustard)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                  <circle cx="8" cy="20" r="2" fill="var(--mustard)"/>
+                  <circle cx="16" cy="14" r="2" fill="var(--cream)"/>
+                  <circle cx="24" cy="8" r="2" fill="var(--forest)"/>
+                </svg>
+              </span>
+              <span class="nav-logo-text" style="color:var(--cream)">GRAMEEN</span>
+            </a>
+            <p class="footer-tagline" data-i18n="footerTagline">Where Every Village Has a Story.</p>
+            <p class="footer-desc" data-i18n="footerDesc">A premium platform connecting conscious travelers with authentic Indian villages, indigenous artisans, and sustainable rural experiences.</p>
+            <div class="footer-social">
+              <a href="#" aria-label="Instagram" class="social-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </a>
+              <a href="#" aria-label="Twitter" class="social-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="#" aria-label="YouTube" class="social-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" stroke="currentColor" stroke-width="2"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3 class="footer-col-title" data-i18n="footerExplore">Explore</h3>
+            <ul class="footer-links">
+              <li><a href="#villages" data-i18n="navVillages">Villages</a></li>
+              <li><a href="#experiences" data-i18n="navExperiences">Experiences</a></li>
+              <li><a href="#festivals" data-i18n="footerFestivals">Festivals</a></li>
+              <li><a href="#gallery" data-i18n="navGallery">Gallery</a></li>
+              <li><a href="#" data-i18n="footerMap">Interactive Map</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3 class="footer-col-title" data-i18n="footerShop">Shop</h3>
+            <ul class="footer-links">
+              <li><a href="#marketplace" data-i18n="footerHandloom">Handloom</a></li>
+              <li><a href="#marketplace" data-i18n="footerPottery">Pottery</a></li>
+              <li><a href="#marketplace" data-i18n="footerTribal">Tribal Art</a></li>
+              <li><a href="#marketplace" data-i18n="footerOrganic">Organic Goods</a></li>
+              <li><a href="#marketplace" data-i18n="footerGiftSets">Gift Sets</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3 class="footer-col-title" data-i18n="footerCompany">Company</h3>
+            <ul class="footer-links">
+              <li><a href="#" data-i18n="footerAbout">About GRAMEEN</a></li>
+              <li><a href="#sustainable" data-i18n="footerImpact">Our Impact</a></li>
+              <li><a href="#artisans" data-i18n="navArtisans">Artisans</a></li>
+              <li><a href="#" data-i18n="footerPress">Press</a></li>
+              <li><a href="#contact" data-i18n="navContact">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p data-i18n="footerCopyright">© 2026 GRAMEEN. Crafted with love for rural India.</p>
+        <div class="footer-bottom-links">
+          <a href="#" data-i18n="footerPrivacy">Privacy Policy</a>
+          <a href="#" data-i18n="footerTerms">Terms of Use</a>
+          <a href="#" data-i18n="footerAccessibility">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== BACK TO TOP ===== -->
+  <!-- ===== SHOPPING CART & CHECKOUT ===== -->
+  <button class="cart-fab" id="cartToggle" type="button" aria-label="Open cart" aria-expanded="false">
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 3h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 7H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1" fill="currentColor"/><circle cx="18" cy="20" r="1" fill="currentColor"/></svg>
+    <span class="cart-count" id="cartCount" aria-live="polite">0</span>
+  </button>
+  <div class="cart-scrim" id="cartScrim" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart" aria-hidden="true">
+    <div class="cart-drawer-header"><div><span class="cart-eyebrow">GRAMEEN MARKET</span><h2>Your cart</h2></div><button class="cart-close" id="cartClose" type="button" aria-label="Close cart">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-empty" id="cartEmpty"><span>✦</span><p>Your cart is waiting for a story.</p><button id="cartContinue" type="button">Explore products</button></div>
+    <div class="cart-summary" id="cartSummary">
+      <div><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div>
+      <small>Complimentary shipping across India</small>
+      <button class="cart-checkout" id="checkoutButton" type="button">Proceed to checkout</button>
+    </div>
+  </aside>
+  <div class="checkout-layer" id="checkoutLayer" aria-hidden="true">
+    <section class="checkout-card" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <button class="checkout-close" id="checkoutClose" type="button" aria-label="Close checkout">×</button>
+      <div class="checkout-heading"><span>Secure demo checkout</span><h2 id="checkoutTitle">A few details, then it’s yours.</h2><p>This is a sample checkout—no payment will be taken.</p></div>
+      <form id="checkoutForm" class="checkout-form">
+        <label>Full name<input name="name" autocomplete="name" required placeholder="Priya Sharma"></label>
+        <label>Email address<input name="email" type="email" autocomplete="email" required placeholder="priya@example.com"></label>
+        <label>Delivery address<textarea name="address" autocomplete="street-address" required placeholder="House no., street, city, PIN code"></textarea></label>
+        <div class="checkout-total"><span>Order total</span><strong id="checkoutTotal">₹0</strong></div>
+        <button class="cart-checkout" type="submit">Place demo order</button>
+      </form>
+    </section>
+  </div>
+  <div class="order-complete" id="orderComplete" aria-hidden="true">
+    <section class="order-complete-card" role="dialog" aria-modal="true" aria-labelledby="orderCompleteTitle">
+      <div class="order-check">✓</div><span>ORDER CONFIRMED</span><h2 id="orderCompleteTitle">Thank you for supporting a living craft.</h2>
+      <p id="orderCompleteMessage">Your order is confirmed.</p><div class="order-number" id="orderNumber"></div>
+      <button class="cart-checkout" id="continueShopping" type="button">Continue exploring</button>
+    </section>
+  </div>
+
+  <!-- ===== BACK TO TOP ===== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
+
+  <!-- ===== MOUSE GLOW ===== -->
+  <div class="mouse-glow" id="mouseGlow" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
